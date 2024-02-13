@@ -84,7 +84,7 @@ nulink/nulink nulink ursula init \
 #Launch the Node
 
 docker run --restart on-failure -d \
---name dalubi \
+--name ursula \
 -p 9151:9151 \
 -v /root/nulink:/code \
 -v /root/nulink:/home/circleci/.local/share/nulink \
@@ -93,5 +93,5 @@ docker run --restart on-failure -d \
 nulink/nulink nulink ursula run --no-block-until-ready
 
 echo '=============================== 安装完成 ==============================='
-echo -e "\e[1;32m Start node: \e[0m\e[1;36m${CYAN} docker restart dalubi ${NC}\e[0m"
-echo -e "\e[1;32m Check logs  : \e[0m\e[1;36m${CYAN} docker logs -f dalubi ${NC}\e[0m"
+echo -e "\e[1;32m Start node: \e[0m\e[1;36m${CYAN} docker restart ursula ${NC}\e[0m"
+echo -e "\e[1;32m Check logs  : \e[0m\e[1;36m${CYAN} docker logs -f ursula ${NC}\e[0m"
