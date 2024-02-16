@@ -59,7 +59,7 @@ echo -e "\e[1;32m \e[0m\e[1;36m${CYAN} 您的密钥库 ${NC}\e[0m"
 filename=$(basename ~/geth-linux-amd64-1.13.8-b20b4a71/keystore/*)
 export filename1=$filename
 sleep 1
-echo -e "\e[1;32m \e[0m\e[1;36m${CYAN} COPY YOUR KEYSTORE ${NC}\e[0m"
+echo -e "\e[1;32m \e[0m\e[1;36m${CYAN} 复制您的密钥库 ${NC}\e[0m"
 evm=$(grep -oP '(?<="address":")[^"]+' ~/geth-linux-amd64-1.13.8-b20b4a71/keystore/*)
 wallet='0x'$evm
 export wallet1=$wallet
