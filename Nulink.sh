@@ -10,11 +10,11 @@ else
 fi
 
 # Generate Geth Account
-wget https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.13.8-b20b4a71.tar.gz
+wget https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.10.23-d901d853.tar.gz
 
-tar -xvzf geth-linux-amd64-1.13.8-b20b4a71.tar.gz
+tar -xvzf geth-linux-amd64-1.10.23-d901d853.tar.gz
 
-cd geth-linux-amd64-1.13.8-b20b4a71/
+cd geth-linux-amd64-1.10.23-d901d853/
 
 ./geth account new --keystore ./keystore
 sleep 5
@@ -43,7 +43,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 docker pull nulink/nulink:latest
 cd /root
 mkdir nulink
-cp /root/geth-linux-amd64-1.13.8-b20b4a71/keystore/* /root/nulink
+cp /root/geth-linux-amd64-1.10.23-d901d853/keystore/* /root/nulink
 chmod -R 777 /root/nulink
 
 # Initiate Worker
@@ -55,17 +55,17 @@ read -r -p "您的员工帐户密码.请务必记住此密码以供将来访问 
 sleep 0.5
 export NULINK_OPERATOR_ETH_PASSWORD=$NULINK_OPERATOR_ETH_PASSWORD
 sleep 0.5
-echo -e "\e[1;32m \e[0m\e[1;36m${CYAN} 您的密钥库 ${NC}\e[0m"
-filename=$(basename ~/geth-linux-amd64-1.13.8-b20b4a71/keystore/*)
+echo " 您的密钥库路径 "
+filename=$(basename ~/geth-linux-amd64-1.10.23-d901d853/keystore/*)
 export filename1=$filename
 sleep 1
-echo -e "\e[1;32m \e[0m\e[1;36m${CYAN} 复制您的密钥库 ${NC}\e[0m"
-evm=$(grep -oP '(?<="address":")[^"]+' ~/geth-linux-amd64-1.13.8-b20b4a71/keystore/*)
+echo "复制您的密钥库 "
+evm=$(grep -oP '(?<="address":")[^"]+' ~/geth-linux-amd64-1.10.23-d901d853/keystore/*)
 wallet='0x'$evm
 export wallet1=$wallet
 sleep 1
 
-# Initialize Node Configuration
+# 节点配置部署
 
 docker run -it --rm \
 -p 9151:9151 \
@@ -81,7 +81,7 @@ nulink/nulink nulink ursula init \
 --operator-address $wallet1 \
 --max-gas-price 10000000000
 
-#Launch the Node
+#加载节点
 
 docker run --restart on-failure -d \
 --name ursula \
@@ -93,5 +93,5 @@ docker run --restart on-failure -d \
 nulink/nulink nulink ursula run --no-block-until-ready
 
 echo '=============================== 安装完成 ==============================='
-echo -e "\e[1;32m 启动节点: \e[0m\e[1;36m${CYAN} docker restart ursula ${NC}\e[0m"
-echo -e "\e[1;32m 检查日志  : \e[0m\e[1;36m${CYAN} docker logs -f ursula ${NC}\e[0m"
+echo 启动节点: docker restart ursula
+echo 检查日志 :docker logs -f ursula
