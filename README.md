@@ -1,1 +1,1 @@
-wget -O Nulink.sh https://github.com/yanowo/Nulink/blob/main/Nulink.sh && chmod +x Nulink.sh && ./Nulink.sh
+wget -O Nulink.sh https://raw.githubusercontent.com/yanowo/Nulink/main/Nulink.sh && chmod +x Nulink.sh && ./Nulink.sh
