@@ -122,7 +122,7 @@ nulink/nulink nulink ursula init \
 
 #加载节点
 
-docker run --restart on-failure -d \
+docker run --restart unless-stopped -d \
 --name ursula \
 -p 9151:9151 \
 -v /root/nulink:/code \
